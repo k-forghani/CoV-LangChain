@@ -1,13 +1,14 @@
+import os
+
 import argparse
 from dotenv import load_dotenv
 from pprint import pprint
 
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 
 from route_chain import RouteCOVEChain
 
-load_dotenv("/workspace/.env")
-
+load_dotenv(".env")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description ='Chain of Verification (CoVE) parser.')
@@ -38,11 +39,15 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     original_query = args.question
-    chain_llm = ChatOpenAI(model_name=args.llm_name,
+    chain_llm = ChatOpenAI(base_url=os.environ["BASE_URL"],
+                     api_key=os.environ["API_KEY"],
+                     model_name=args.llm_name,
                      temperature=args.temperature,
                      max_tokens=args.max_tokens)
     
-    route_llm = ChatOpenAI(model_name="gpt-3.5-turbo-0613",
+    route_llm = ChatOpenAI(base_url=os.environ["BASE_URL"],
+                     api_key=os.environ["API_KEY"],
+                     model_name="gpt-4o-mini",
                      temperature=0.1,
                      max_tokens=500)
     

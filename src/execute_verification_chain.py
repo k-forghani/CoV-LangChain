@@ -24,10 +24,10 @@ from langchain.schema import (
 )
 from langchain.chains.base import Chain
 from langchain.prompts.base import BasePromptTemplate
-from langchain.tools import DuckDuckGoSearchRun
+from langchain_community.tools import DuckDuckGoSearchRun
 import langchain
-from langchain.chat_models import ChatOpenAI
-from langchain.tools import DuckDuckGoSearchRun
+from langchain_community.chat_models import ChatOpenAI
+from langchain_community.tools import DuckDuckGoSearchRun
 from langchain.schema import (
     AIMessage,
     HumanMessage,
